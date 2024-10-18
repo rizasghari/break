@@ -2,6 +2,7 @@ import 'package:brick_breaker/src/break_breaker.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 import '../config.dart';
@@ -38,13 +39,15 @@ class Ball extends CircleComponent
       Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
     if (other is PlayArea) {
-      if (intersectionPoints.first.y <= 0) {
+      FlameAudio.play('ball_kick.mp3');
+      if (/*intersectionPoints.first.y <= 0*/position.y - radius <= 0) {
         velocity.y = -velocity.y;
       } else if (intersectionPoints.first.x <= 0) {
         velocity.x = -velocity.x;
       } else if (intersectionPoints.first.x >= game.width) {
         velocity.x = -velocity.x;
       } else if (intersectionPoints.first.y >= game.height) {
+        FlameAudio.play('game_over.mp3');
         add(
           RemoveEffect(
             delay: 0.35,
@@ -55,6 +58,7 @@ class Ball extends CircleComponent
         );
       }
     } else if (other is Bat) {
+      FlameAudio.play('ball_kick.mp3');
       velocity.y = -velocity.y;
       velocity.x = velocity.x +
           (position.x - other.position.x) / other.size.x * game.width * 0.3;

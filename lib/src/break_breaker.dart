@@ -5,6 +5,7 @@ import 'package:brick_breaker/src/play_state.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -51,9 +52,8 @@ class BrickBreaker extends FlameGame
     super.onLoad();
 
     camera.viewfinder.anchor = Anchor.topLeft;
-
+    FlameAudio.play('game_start.mp3');
     world.add(PlayArea());
-
     playState = PlayState.welcome;
   }
 
