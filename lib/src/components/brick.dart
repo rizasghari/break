@@ -1,5 +1,6 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
 import '../break_breaker.dart';
@@ -24,7 +25,8 @@ class Brick extends RectangleComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
-    removeFromParent();
+    add(RemoveEffect());
+    game.score.value++;
 
     if (game.world.children.query<Brick>().length == 1) {
       game.playState = PlayState.won;

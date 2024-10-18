@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
+import '../config.dart';
 import '../play_state.dart';
 import 'components.dart';
 
@@ -29,7 +30,7 @@ class Ball extends CircleComponent
   @override
   void update(double dt) {
     super.update(dt);
-    position += velocity * dt;
+    position += velocity * dt * ballSpeedScale;
   }
 
   @override
