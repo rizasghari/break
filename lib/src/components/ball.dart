@@ -30,7 +30,7 @@ class Ball extends CircleComponent
   @override
   void update(double dt) {
     super.update(dt);
-    position += velocity * dt * ballSpeedScale;
+    position += velocity * dt;
   }
 
   @override

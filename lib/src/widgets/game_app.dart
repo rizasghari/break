@@ -5,13 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import '../break_breaker.dart';
 import '../config.dart';
 import '../play_state.dart';
-import 'overlay_screen.dart';                                   // Add this import
-import 'score_card.dart';                                       // And this one too
+import 'overlay_screen.dart';
+import 'score_card.dart';
 
-class GameApp extends StatefulWidget {                          // Modify this line
+class GameApp extends StatefulWidget {
   const GameApp({super.key});
 
-  @override                                                     // Add from here...
+  @override
   State<GameApp> createState() => _GameAppState();
 }
 
@@ -22,7 +22,7 @@ class _GameAppState extends State<GameApp> {
   void initState() {
     super.initState();
     game = BrickBreaker();
-  }                                                             // To here.
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _GameAppState extends State<GameApp> {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Center(
-                child: Column(                                  // Modify from here...
+                child: Column(
                   children: [
                     ScoreCard(score: game.score),
                     Expanded(
@@ -63,27 +63,27 @@ class _GameAppState extends State<GameApp> {
                             game: game,
                             overlayBuilderMap: {
                               PlayState.welcome.name: (context, game) =>
-                              const OverlayScreen(
-                                title: 'TAP TO PLAY',
-                                subtitle: 'Use arrow keys or swipe',
-                              ),
+                                  const OverlayScreen(
+                                    title: 'TAP TO PLAY',
+                                    subtitle: 'Use arrow keys or swipe',
+                                  ),
                               PlayState.gameOver.name: (context, game) =>
-                              const OverlayScreen(
-                                title: 'G A M E   O V E R',
-                                subtitle: 'Tap to Play Again',
-                              ),
+                                  const OverlayScreen(
+                                    title: 'G A M E   O V E R',
+                                    subtitle: 'Tap to Play Again',
+                                  ),
                               PlayState.won.name: (context, game) =>
-                              const OverlayScreen(
-                                title: 'Y O U   W O N ! ! !',
-                                subtitle: 'Tap to Play Again',
-                              ),
+                                  const OverlayScreen(
+                                    title: 'Y O U   W O N ! ! !',
+                                    subtitle: 'Tap to Play Again',
+                                  ),
                             },
                           ),
                         ),
                       ),
                     ),
                   ],
-                ),                                              // To here.
+                ),
               ),
             ),
           ),
